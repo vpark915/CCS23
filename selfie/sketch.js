@@ -16,7 +16,7 @@ function setup() {
   )
   //HEAD//
   fill(224, 194, 110)
-  strokeWeight(4);
+  strokeWeight(4)
   bezier(100,170,
     102,340,
     298,340,
