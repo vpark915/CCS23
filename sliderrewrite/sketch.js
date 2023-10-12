@@ -55,7 +55,7 @@ function setup() {
   redColorSlider = createSlider(0,255,0)
   bcLabel = createDiv("Blue")
   blueColorSlider = createSlider(0,255,0)
-  gcLabel = createDiv("Red")
+  gcLabel = createDiv("Green")
   greenColorSlider = createSlider(0,255,0)
   
   //DIRECTION SLIDERS
