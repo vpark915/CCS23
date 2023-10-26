@@ -7,7 +7,7 @@ function setup() {
 function getData(data) {
   //Get Points Leaders 
   let player = data
-  console.log(player.events[0].competitions[0].attendance)
+  console.log(player.events[0].competitions[0])
 }
 
 
