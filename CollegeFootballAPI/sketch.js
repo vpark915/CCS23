@@ -1,4 +1,5 @@
-let link = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?calendar=blacklist&dates=20231021'
+//let link = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?calendar=blacklist&dates=20231028'
+let link = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?calendar=blacklist&dates='
 let input 
 let hometeamcolor
 let awayteamcolor 
@@ -11,19 +12,25 @@ let homename
 let awayname 
 let attendance
 let date 
+let dateinput
 
 function setup() {
   //CANVAS AND JSON SETUP
   noCanvas();
-  loadJSON(link, getData);
   // Create input box and set its position
   input = createInput();
   input.position(20, 20);
+  dateinput = createInput();
+  dateinput.position(20,40);
+
 
   createCanvas(800,400);
   let button = createButton('Submit');
   button.position(input.x + input.width, 20);
-  button.mousePressed(updateVariables);  // When button is pressed, call logText function
+  let datebutton = createButton('Submit')
+  datebutton.position(dateinput.x + dateinput.width, 40);
+  button.mousePressed(updateVariables); 
+  datebutton.mousePressed(updateDate);
 }
 
 function draw() {
@@ -98,7 +105,9 @@ function getData(data) {
 //UPDATE THE VARIABLES 
 function updateVariables(){
   for(let i = 0; i < globaldata.events.length; i++){
-    if(globaldata.events[i].name.toLowerCase() == input.value().toLowerCase()){
+    let lowercasedata = globaldata.events[i].name.toLowerCase()
+    let lowercaseinput = input.value().toLowerCase()
+    if(lowercasedata.includes(lowercaseinput)){
       hometeamcolor = '#' + globaldata.events[i].competitions[0].competitors[0].team.color
       awayteamcolor = '#' + globaldata.events[i].competitions[0].competitors[1].team.color
       homescore = globaldata.events[i].competitions[0].competitors[0].score
@@ -114,4 +123,8 @@ function updateVariables(){
     }
   }
   working = false
+}
+
+function updateDate(){
+  loadJSON(link + dateinput.value(),getData)
 }
