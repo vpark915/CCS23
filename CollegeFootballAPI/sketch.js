@@ -13,6 +13,7 @@ let attendance
 let date 
 
 function setup() {
+  //CANVAS AND JSON SETUP
   noCanvas();
   loadJSON(link, getData);
   // Create input box and set its position
@@ -20,7 +21,6 @@ function setup() {
   input.position(20, 20);
 
   createCanvas(800,400);
-  // Optional: Create a button and set its position
   let button = createButton('Submit');
   button.position(input.x + input.width, 20);
   button.mousePressed(updateVariables);  // When button is pressed, call logText function
@@ -44,7 +44,6 @@ function draw() {
     quad(77,400,800-77,400,665,250,800-665,250)
 
     //PLAYERS 
-    //fill(hometeamcolor)
     fill(hometeamcolor)
     noStroke()
     triangle(192,300,290,300,240,375)
@@ -91,20 +90,20 @@ function draw() {
       updateVariables();
       working = true
     } catch (error) {
-      // Handle the error or exception
     }
   }
 }
 function logText() {
-  console.log(input.value());  // Print input value to the console
+  console.log(input.value());  //CONSOLE
   print(working)
 }
 
 function getData(data) {
-  console.log(data.events[0])
+  console.log(data.events)
   globaldata = data
 }
 
+//UPDATE THE VARIABLES 
 function updateVariables(){
   for(let i = 0; i < globaldata.events.length; i++){
     if(globaldata.events[i].name == input.value()){
