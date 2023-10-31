@@ -1,4 +1,4 @@
-let link = 'http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?calendar=blacklist&dates=20231021'
+let link = 'https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?calendar=blacklist'
 function setup() {
   noCanvas();
   loadJSON(link, getData);
@@ -6,8 +6,7 @@ function setup() {
 
 function getData(data) {
   //Get Points Leaders 
-  let player = data
-  console.log(player.events[0].competitions[0])
+  console.log(data.events[0].competitions[0])
 }
 
 
