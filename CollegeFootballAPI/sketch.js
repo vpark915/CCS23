@@ -98,7 +98,7 @@ function getData(data) {
 //UPDATE THE VARIABLES 
 function updateVariables(){
   for(let i = 0; i < globaldata.events.length; i++){
-    if(globaldata.events[i].name == input.value()){
+    if(globaldata.events[i].name.toLowerCase() == input.value().toLowerCase()){
       hometeamcolor = '#' + globaldata.events[i].competitions[0].competitors[0].team.color
       awayteamcolor = '#' + globaldata.events[i].competitions[0].competitors[1].team.color
       homescore = globaldata.events[i].competitions[0].competitors[0].score
