@@ -44,7 +44,7 @@ function draw() {
     quad(77,400,800-77,400,665,250,800-665,250)
 
     //PLAYERS 
-    fill(hometeamcolor)
+    fill(awayteamcolor)
     noStroke()
     triangle(192,300,290,300,240,375)
     stroke(0)
@@ -58,7 +58,7 @@ function draw() {
     rect(220,247,
       281,270)
 
-    fill(awayteamcolor)
+    fill(hometeamcolor)
     noStroke()
     triangle(800-192,300,800-290,300,800-240,375)
     stroke(0)
@@ -83,14 +83,6 @@ function draw() {
     text(attendance + " people watching",400,380)
     text("Date: " + date,200,100)
     text(240,350)
-  }
-  ///LOGIC///
-  if(input.value() != 0){
-    try {
-      updateVariables();
-      working = true
-    } catch (error) {
-    }
   }
 }
 function logText() {
@@ -117,6 +109,9 @@ function updateVariables(){
       homerecord = globaldata.events[i].competitions[0].competitors[0].records[0].summary
       awayrecord = globaldata.events[i].competitions[0].competitors[1].records[0].summary
       date = globaldata.events[i].date
+      working = true
+      return
     }
   }
+  working = false
 }
