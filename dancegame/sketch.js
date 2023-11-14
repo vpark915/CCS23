@@ -47,6 +47,7 @@ function setup() {
 }
 
 function draw() {
+  //GAME END CONDITION
   if(crapscore > 100){
     background(0);
     noStroke();
@@ -133,6 +134,7 @@ function gotResult(error, results) {
   classifyVideo();
 }
 
+// THE TEXT THAT TELLS YOU WHETHER YOU SUCK OR ARE GOOD
 class ResponseText{
   constructor(output){
     this.text = output; 
@@ -148,6 +150,8 @@ class ResponseText{
     text(this.text,this.position.x,this.position.y)
   }
 }
+
+// COMING UP WITH DANCE POSES
 class NewPose{
   constructor(position){
     this.pose = poseList[floor(random(0,5))];
