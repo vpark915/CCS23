@@ -47,6 +47,7 @@ function setup() {
 }
 
 function draw() {
+  console.log(label)
   //GAME END CONDITION
   if(crapscore > 100){
     background(0);
@@ -160,14 +161,14 @@ class NewPose{
   render(){
     fill(255,255,255);
     stroke(255,255,255);
-    if(this.pose == "Right Arm Up"){
+    if(this.pose == "Left Arm Up"){
       circle(this.position.x,this.position.y,10);
       strokeWeight(10);
       line(this.position.x-20,this.position.y+30,this.position.x+20,this.position.y+30);
       line(this.position.x-20,this.position.y+30,this.position.x-20,this.position.y-10);
       line(this.position.x+20,this.position.y+30,this.position.x-10,this.position.y+50);
     }
-    else if(this.pose == "Left Arm Up"){
+    else if(this.pose == "Right Arm Up"){
       circle(this.position.x,this.position.y,10);
       strokeWeight(10);
       line(this.position.x-20,this.position.y+30,this.position.x+20,this.position.y+30);
