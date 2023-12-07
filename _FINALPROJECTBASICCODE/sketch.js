@@ -112,7 +112,7 @@ class BingBing{
     this.yPrevPos;
   }
   renderPlayer(){
-    fill(133, 255, 117);
+    fill(102, 255, 247);
     circle(this.xpos,this.ypos,30);
   }
   movePlayer(){
