@@ -266,7 +266,7 @@ class Player2{
   movePlayer(){
     if(this.ypos > 500 || this.xpos < -100 || this.xpos > 1000 || this.ypos < -100){
       this.stock -= 1; 
-      this.xpos = 300;
+      this.xpos = 600;
       this.ypos = 300;
       this.xvelocity = 0;
       this.yveloctiy = 0;
