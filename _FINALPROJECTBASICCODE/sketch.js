@@ -1,17 +1,33 @@
+// Player class variables
 let player1;
 let player2; 
+
+// Multiplayer flag
 let multiStarted;
+
+// Bot flag
 let botStarted; 
+
+// Help screen flag
 let helpScreenOn; 
+
+// Game over flag 
 let gameOver; 
+
+// Records the current keys pressed
 let keysPressed = {};
-let keysTimeStamps = {}; 
+
+// All UI buttons
 let startButton; 
 let helpButton; 
 let botButton;
 let backButton;
 let homeButton; 
-let gameFont; 
+
+// Game font 
+let gameFont;
+
+// Preloaded songs and sounds 
 let gameSong; 
 let menuSong; 
 let punchSound;
@@ -75,6 +91,7 @@ function setup() {
 }
 
 function draw() {
+  // If flags are on run their respective actions
   if(gameOver == true){
     GameOverScreen();
   }
@@ -148,6 +165,7 @@ class Player1{
     if(this.hitStunned == true){
       this.hitStunTimerCurr = millis();
       console.log(this.hitStunTimerCurr - this.hitStunTimerStart);
+      // Checking hitstun, if no hitstun allow normal movement
       if(this.hitStunTimerStart == false){
         this.hitStunTimerStart = millis();
       }
@@ -161,6 +179,7 @@ class Player1{
         fill(255)
         rect(this.xpos - 15,this.ypos + 5, this.xpos, this.ypos - 5);
         triangle(this.xpos,this.ypos - 15,this.xpos + 15, this.ypos, this.xpos,this.ypos + 15);
+        // DAMAGE the other player 
         if (dist(this.xpos,this.ypos,player2.xpos,player2.ypos) <= 30){
           punchSound.play();
           player2.hitStunned = true; 
@@ -233,6 +252,7 @@ class Player1{
     if(this.touchingGround == true && this.xvelocity < 0){
       this.xvelocity += 0.1; 
     }
+    // Velocity and positional rules
     this.xPrevPos = this.xpos;
     this.yPrevPos = this.ypos; 
     this.xpos += this.xvelocity;
@@ -240,6 +260,7 @@ class Player1{
   }
 }
 
+// Code in player 2 is the exact same as player 1 except for input differences and attacking player 1 
 class Player2{
   constructor(xpos,ypos){
     this.xpos = xpos;
@@ -385,6 +406,7 @@ class Player2{
   }
 }
 
+// Also uses a lot of the same code from player 1 and player 2 
 class Bot{
   constructor(xpos,ypos){
     this.xpos = xpos;
@@ -520,6 +542,7 @@ class Bot{
           }
         }
       }
+      // Do the correct action 4/5s of the time or whatever the probabilities are 
       if(player1.xpos - this.xpos > 0 && player1.xpos > 220 && player1.xpos < 680){
         let randomInt = floor(random(0,2));
         if(randomInt != 0){
@@ -591,6 +614,7 @@ function keyReleased(){
   keysPressed[key] = false; 
 }
 
+// Start gamemode functions when button clicked 
 function StartMulti(){
   menuSong.stop();
   gameSong.loop();
@@ -608,6 +632,7 @@ function StartBot(){
   player2 = new Bot(600,300);
 }
 
+// Create help screen
 function HelpScreen(){
   helpScreenOn = true;
   background(0);
@@ -635,6 +660,7 @@ function HelpScreen(){
   homeButton.hide();
 }
 
+// Create home screen
 function HomeScreen(){
   menuSong.loop();
   gameSong.stop();
@@ -657,6 +683,7 @@ function HomeScreen(){
   text("Sumo Balls",450,250)
 }
 
+// Constantly update and render the multiplayer screen
 function MultiplayerScreen(){
   homeButton.show();
   helpButton.hide();
@@ -691,6 +718,7 @@ function MultiplayerScreen(){
   text(player2.percentage + "%",550,130);
 }
 
+// Same as multiplayer screen but just made for the bot gamemode 
 function BotScreen(){
   homeButton.show();
   helpButton.hide();
@@ -726,6 +754,7 @@ function BotScreen(){
   text(player2.percentage + "%",550,130);
 }
 
+// When the gameover flag is on 
 function GameOverScreen(){
   textSize(100);
   text("GAME OVER",450,250);
